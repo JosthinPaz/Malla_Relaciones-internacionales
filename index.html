@@ -839,6 +839,10 @@
                     <div class="stat-label">MATERIAS APROBADAS</div>
                 </div>
                 <div class="stat">
+                    <div class="stat-value" id="overallGPA">0.00</div>
+                    <div class="stat-label">PROMEDIO GENERAL</div>
+                </div>
+                <div class="stat">
                     <div class="stat-value" id="progressPercentage">0%</div>
                     <div class="stat-label">PROGRESO TOTAL</div>
                     <div class="progress-bar">
@@ -1188,6 +1192,7 @@
                     }
                     saveState();
                     renderSemesters(); // To update averages
+                    updateStats(); // To update overall GPA
                 }
             });
             
@@ -1346,7 +1351,7 @@
                         <div class="semester-title">SEMESTRE ${romanize(semester.number)}</div>
                         <div class="semester-info">
                             <div class="semester-credits">${semester.credits} Créditos</div>
-                            ${approvedCount === totalCount && totalCount > 0 && average ? `<div class="semester-average${isHighAverage ? ' semester-average-high' : ' semester-average-low'}">${average}</div>` : ''}
+                            ${average ? `<div class="semester-average${isHighAverage ? ' semester-average-high' : ' semester-average-low'}">${average}</div>` : ''}
                         </div>
                     </div>
                     <div class="subjects-container">
@@ -1442,6 +1447,8 @@
             let approvedCredits = 0;
             let approvedSubjectsCount = 0;
             let totalSubjects = 0;
+            let gradesSum = 0;
+            let gradesCount = 0;
             
             studyPlan.semesters.forEach(semester => {
                 semester.subjects.forEach(subject => {
@@ -1450,17 +1457,23 @@
                     if (approvedSubjects.has(subject.code)) {
                         approvedCredits += subject.credits;
                         approvedSubjectsCount++;
+                        if (grades[subject.code] !== undefined) {
+                            gradesSum += grades[subject.code];
+                            gradesCount++;
+                        }
                     }
                 });
             });
             
             const progressPercentage = Math.round((approvedCredits / studyPlan.totalCredits) * 100);
+            const overallGPA = gradesCount > 0 ? (gradesSum / gradesCount).toFixed(2) : '0.00';
             
             document.getElementById('totalCredits').textContent = totalCredits;
             document.getElementById('approvedCredits').textContent = approvedCredits;
             const approvedSubjectsEl = document.getElementById('approvedSubjects');
             approvedSubjectsEl.textContent = approvedSubjectsCount;
             approvedSubjectsEl.className = `stat-value ${approvedSubjectsCount === totalSubjects ? 'stat-complete' : 'stat-incomplete'}`;
+            document.getElementById('overallGPA').textContent = overallGPA;
             document.getElementById('progressPercentage').textContent = `${progressPercentage}%`;
             document.getElementById('progressFill').style.width = `${progressPercentage}%`;
         }
