@@ -610,6 +610,22 @@
             margin-top: 40px;
         }
 
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .subjects-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 12px;
+            }
+            
+            .subject {
+                padding: 12px;
+                min-height: 120px;
+            }
+        }
+
         @media (max-width: 768px) {
             .header-top {
                 flex-direction: column;
@@ -620,6 +636,12 @@
             .controls {
                 width: 100%;
                 justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            
+            .btn {
+                padding: 8px 12px;
+                font-size: 0.9rem;
             }
             
             .semester-header {
@@ -630,11 +652,82 @@
             
             .subjects-container {
                 grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .subject {
+                padding: 10px;
+                min-height: 100px;
             }
             
             .stats-container {
                 flex-direction: column;
                 gap: 10px;
+            }
+            
+            .stat {
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .university-name {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 15px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .toggle-container {
+                justify-content: center;
+            }
+            
+            .legend-items {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .subject {
+                padding: 8px;
+                min-height: 80px;
+            }
+            
+            .subject-title {
+                font-size: 0.9rem;
+            }
+            
+            .subject-code {
+                font-size: 0.8rem;
+            }
+            
+            .subject-credits {
+                font-size: 0.8rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 15px;
             }
         }
     </style>
