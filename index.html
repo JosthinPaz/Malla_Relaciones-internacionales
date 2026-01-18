@@ -196,6 +196,14 @@
             font-weight: bold;
         }
 
+        .stat-complete {
+            color: #ffffff;
+        }
+
+        .stat-incomplete {
+            color: #ffffff;
+        }
+
         .stat-label {
             font-size: 0.9rem;
             opacity: 0.8;
@@ -255,6 +263,31 @@
             font-weight: bold;
         }
 
+        .semester-info {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .semester-average {
+            background-color: #ffeb3b;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .semester-average-high {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .semester-average-low {
+            background-color: #f44336;
+            color: white;
+        }
+
         .semester-locked {
             opacity: 0.7;
             position: relative;
@@ -309,6 +342,11 @@
         }
 
         .subject-approved {
+            background-color: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .subject-approved-high {
             background-color: #e8f5e9;
             border-left-color: #4caf50;
         }
@@ -349,6 +387,21 @@
         .subject-credits {
             font-weight: bold;
             color: var(--primary-color);
+        }
+
+        .subject-grade {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+        }
+
+        .subject-grade input {
+            width: 50px;
+            padding: 2px 4px;
+            border: 1px solid var(--gray-light);
+            border-radius: 4px;
+            text-align: center;
         }
 
         .subject-name {
@@ -450,6 +503,10 @@
 
         .status-approved {
             color: #4caf50;
+        }
+
+        .status-failed {
+            color: #f44336;
         }
 
         .status-available {
@@ -559,13 +616,14 @@
         .semester-progress {
             margin-top: 15px;
             padding: 10px;
-            background-color: #f5f5f5;
+            background-color: #4caf50;
+            color: white;
             border-radius: var(--border-radius);
             font-size: 0.9rem;
         }
 
         .dark-mode .semester-progress {
-            background-color: #2d2d2d;
+            background-color: #2e7d32;
         }
 
         .semester-complete {
@@ -575,6 +633,16 @@
             margin-top: 5px;
             font-weight: bold;
             color: #2e7d32;
+        }
+
+        .semester-complete-high {
+            background-color: #c8e6c9;
+            color: #1b5e20;
+        }
+
+        .semester-complete-low {
+            background-color: #ffcdd2;
+            color: #b71c1c;
         }
 
         .pdf-link {
@@ -812,7 +880,7 @@
             </div>
 
             <div class="pdf-link">
-                <a href="#" class="pdf-btn" id="pdfBtn">
+                <a href="https://drive.google.com/file/d/1KGeIEbYzUmdtEM9goR03KhIR2PombHEl/view?usp=sharing" class="pdf-btn" id="pdfBtn" target="_blank">
                     <i class="fas fa-file-pdf"></i> Ver Plan de Estudios Oficial (PDF)
                 </a>
             </div>
@@ -887,27 +955,32 @@
         const studyPlan = {
             totalCredits: 160,
             electivesOptions: {
-                international: [
+                ELE001: [
                     "Cooperación Internacional y Gestión de Proyectos",
-                    "Desarrollo Sostenible y Medio Ambiente",
+                    "Desarrollo Sostenible y Medio Ambiente"
+                ],
+                ELE002: [
+                    "Marketing Político y Gubernamental",
+                    "Filosofía política contemporánea",
+                    "Políticas públicas ciencia tecnología e innovación",
+                    "Análisis de coyuntura y medios de comunicación"
+                ],
+                ELE003: [
+                    "Economía de Defensa",
+                    "Integración y seguridad regional"
+                ],
+                ELE004: [
                     "Estudios de Medio Oriente",
                     "Estudios Norteamericanos",
                     "Seminario I (Asia y África)",
                     "Conflicts in Latin America"
                 ],
-                political: [
-                    "Marketing Político y Gubernamental",
-                    "Filosofía Política Contemporánea",
-                    "Políticas Públicas, Ciencia, Tecnología e Innovación",
-                    "Análisis de Coyuntura y Medios de Comunicación",
+                ELE005: [
                     "Gerencia Pública",
                     "Partidos Políticos en Europa"
                 ],
-                economic: [
-                    "Economía de Defensa",
-                    "Integración y Seguridad Regional",
-                    "Negocios Internacionales",
-                    "Análisis Geopolítico Contemporáneo"
+                ELE006: [
+                    "Negocios Internacionales"
                 ]
             },
             semesters: [
@@ -1003,9 +1076,9 @@
                     locked: true,
                     subjects: [
                         { code: "SEG001", name: "Seguridad Internacional", credits: 4, component: "international", prerequisites: ["TAV001"] },
-                        { code: "ELE001", name: "Componente Electivo I", credits: 4, component: "elective", prerequisites: [], isElective: true, componentType: "international" },
-                        { code: "ELE002", name: "Componente Electivo II", credits: 4, component: "elective", prerequisites: [], isElective: true, componentType: "political" },
-                        { code: "ELE003", name: "Componente Electivo III", credits: 4, component: "elective", prerequisites: [], isElective: true, componentType: "economic" },
+                        { code: "ELE001", name: "Componente Electivo I", credits: 4, component: "elective", prerequisites: [], isElective: true },
+                        { code: "ELE002", name: "Componente Electivo II", credits: 4, component: "elective", prerequisites: [], isElective: true },
+                        { code: "ELE003", name: "Componente Electivo III", credits: 4, component: "elective", prerequisites: [], isElective: true },
                         { code: "ETI001", name: "Ética Profesional", credits: 2, component: "sociohumanistic", prerequisites: [] }
                     ]
                 },
@@ -1014,9 +1087,9 @@
                     credits: 18,
                     locked: true,
                     subjects: [
-                        { code: "ELE004", name: "Componente Electivo IV", credits: 4, component: "elective", prerequisites: [], isElective: true, componentType: "international" },
-                        { code: "ELE005", name: "Componente Electivo V", credits: 4, component: "elective", prerequisites: [], isElective: true, componentType: "political" },
-                        { code: "ELE006", name: "Componente Electivo VI", credits: 4, component: "elective", prerequisites: [], isElective: true, componentType: "economic" },
+                        { code: "ELE004", name: "Componente Electivo IV", credits: 4, component: "elective", prerequisites: [], isElective: true },
+                        { code: "ELE005", name: "Componente Electivo V", credits: 4, component: "elective", prerequisites: [], isElective: true },
+                        { code: "ELE006", name: "Componente Electivo VI", credits: 4, component: "elective", prerequisites: [], isElective: true },
                         { code: "PAS001", name: "Pasantía", credits: 6, component: "investigative", prerequisites: [], isInternship: true }
                     ]
                 }
@@ -1030,6 +1103,7 @@
         let darkMode = false;
         let selectedElectives = {};
         let selectedSedes = {}; // code -> selected name
+        let grades = {}; // code -> grade
 
         // Inicializar la aplicación
         document.addEventListener('DOMContentLoaded', function() {
@@ -1042,10 +1116,6 @@
             document.getElementById('exportBtn').addEventListener('click', exportProgress);
             document.getElementById('importBtn').addEventListener('click', importProgress);
             document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
-            document.getElementById('pdfBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('Enlace al PDF oficial del plan de estudios. En una implementación real, esto abriría el documento.');
-            });
 
             // Modal events
             const modal = document.getElementById('electiveModal');
@@ -1072,6 +1142,7 @@
                 darkMode = state.darkMode || false;
                 selectedElectives = state.selectedElectives || {};
                 selectedSedes = state.selectedSedes || {};
+                grades = state.grades || {};
                 
                 if (darkMode) {
                     document.body.classList.add('dark-mode');
@@ -1097,9 +1168,8 @@
                     const subjectCode = e.target.getAttribute('data-code');
                     unapproveSubject(subjectCode);
                 } else if (e.target.classList.contains('btn-select')) {
-                    const code = e.target.getAttribute('data-code');
-                    const type = e.target.getAttribute('data-type');
-                    openElectiveModal(code, type);
+                    const electiveCode = e.target.getAttribute('data-elective-code');
+                    openElectiveModal(electiveCode);
                 }
             });
 
@@ -1108,6 +1178,16 @@
                     const subjectCode = e.target.getAttribute('data-code');
                     selectedSedes[subjectCode] = e.target.value;
                     saveState();
+                } else if (e.target.classList.contains('grade-input')) {
+                    const subjectCode = e.target.getAttribute('data-code');
+                    const grade = parseFloat(e.target.value);
+                    if (!isNaN(grade) && grade >= 0 && grade <= 5) {
+                        grades[subjectCode] = grade;
+                    } else {
+                        delete grades[subjectCode];
+                    }
+                    saveState();
+                    renderSemesters(); // To update averages
                 }
             });
             
@@ -1128,27 +1208,26 @@
             
             studyPlan.semesters.forEach(semester => {
                 const semesterElement = document.createElement('div');
-                semesterElement.className = `semester ${semester.locked ? 'semester-locked' : ''}`;
+                semesterElement.className = 'semester';
                 semesterElement.id = `semester-${semester.number}`;
-                
-                // Determinar si mostrar el icono de bloqueo
-                if (semester.locked && semester.number > currentSemester) {
-                    semesterElement.innerHTML = `
-                        <div class="lock-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    `;
-                }
                 
                 let subjectsHTML = '';
                 let approvedCount = 0;
                 let totalCount = 0;
+                let gradesSum = 0;
+                let gradesCount = 0;
                 
                 semester.subjects.forEach(subject => {
                     totalCount++;
                     const isApproved = approvedSubjects.has(subject.code);
                     const isEnrolled = enrolledSubjects.has(subject.code);
-                    if (isApproved) approvedCount++;
+                    if (isApproved) {
+                        approvedCount++;
+                        if (grades[subject.code] !== undefined) {
+                            gradesSum += grades[subject.code];
+                            gradesCount++;
+                        }
+                    }
                     
                     const isCurrentSemester = (semester.number === currentSemester && !semester.locked);
                     const isAvailable = checkSubjectAvailability(subject, semester);
@@ -1174,9 +1253,20 @@
                     }
                     
                     if (isApproved) {
-                        subjectClass += ' subject-approved';
-                        statusText = 'Aprobada';
-                        statusClass = 'status-approved';
+                        const grade = grades[subject.code];
+                        if (grade && grade >= 3) {
+                            subjectClass += ' subject-approved-high';
+                            statusText = 'Aprobada';
+                            statusClass = 'status-approved';
+                        } else if (grade && grade < 3) {
+                            subjectClass += ' subject-approved';
+                            statusText = 'No Aprobada';
+                            statusClass = 'status-failed';
+                        } else {
+                            subjectClass += ' subject-approved';
+                            statusText = 'Aprobada';
+                            statusClass = 'status-approved';
+                        }
                         buttonHTML = `<button class="subject-action btn-unapprove" data-code="${subject.code}">Desaprobar</button>`;
                     } else if (isEnrolled) {
                         subjectClass += ' subject-current';
@@ -1199,7 +1289,7 @@
                     if (subject.isElective) {
                         const selectedName = selectedElectives[subject.code] || subject.name;
                         if (!selectedElectives[subject.code]) {
-                            buttonHTML = `<button class="subject-action btn-select" data-code="${subject.code}" data-type="${subject.componentType}">Seleccionar</button>`;
+                            buttonHTML = `<button class="subject-action btn-select" data-code="${subject.code}" data-elective-code="${subject.code}">Seleccionar</button>`;
                         }
                     }
                     
@@ -1222,6 +1312,10 @@
                             <div class="subject-header">
                                 <div class="subject-code">${subject.code}</div>
                                 <div class="subject-credits">${subject.credits} créditos</div>
+                                ${isApproved ? `<div class="subject-grade">
+                                    <label>Nota:</label>
+                                    <input type="number" class="grade-input" data-code="${subject.code}" value="${grades[subject.code] || ''}" min="0" max="5" step="0.1">
+                                </div>` : ''}
                             </div>
                             <div class="subject-name">${subject.isElective ? (selectedElectives[subject.code] || subject.name) : subject.name}</div>
                             <div class="subject-component component-${subject.component}">${getComponentName(subject.component)}</div>
@@ -1237,18 +1331,23 @@
                 });
                 
                 // Barra de progreso del semestre
+                const average = gradesCount > 0 ? (gradesSum / gradesCount).toFixed(2) : null;
+                const isHighAverage = average && parseFloat(average) > 3.5;
                 const semesterProgressHTML = `
                     <div class="semester-progress">
                         <div>Progreso del semestre: ${approvedCount} de ${totalCount} materias aprobadas</div>
                         ${approvedCount === totalCount && totalCount > 0 ? 
-                            '<div class="semester-complete">✓ Semestre completado</div>' : ''}
+                            `<div class="semester-complete${isHighAverage ? '-high' : '-low'}">${isHighAverage ? 'Aprobado y feliz' : '✓ Semestre completado'}</div>` : ''}
                     </div>
                 `;
                 
                 semesterElement.innerHTML = `
                     <div class="semester-header">
                         <div class="semester-title">SEMESTRE ${romanize(semester.number)}</div>
-                        <div class="semester-credits">${semester.credits} Créditos</div>
+                        <div class="semester-info">
+                            <div class="semester-credits">${semester.credits} Créditos</div>
+                            ${approvedCount === totalCount && totalCount > 0 && average ? `<div class="semester-average${isHighAverage ? ' semester-average-high' : ' semester-average-low'}">${average}</div>` : ''}
+                        </div>
                     </div>
                     <div class="subjects-container">
                         ${subjectsHTML}
@@ -1323,6 +1422,7 @@
         function unapproveSubject(subjectCode) {
             approvedSubjects.delete(subjectCode);
             enrolledSubjects.delete(subjectCode); // Remover de matriculadas también
+            delete grades[subjectCode]; // Remover la nota
             updateSemesterLocks();
             renderSemesters();
             updateStats();
@@ -1332,17 +1432,7 @@
         // Actualizar bloqueos de semestres
         function updateSemesterLocks() {
             studyPlan.semesters.forEach((semester, index) => {
-                if (index === 0) {
-                    semester.locked = false; // Primer semestre siempre desbloqueado
-                } else {
-                    const prevSemester = studyPlan.semesters[index - 1];
-                    const prevApproved = prevSemester.subjects.every(sub => approvedSubjects.has(sub.code));
-                    semester.locked = !prevApproved;
-                    
-                    if (!semester.locked && semester.number > currentSemester) {
-                        currentSemester = semester.number;
-                    }
-                }
+                semester.locked = false; // Todos los semestres desbloqueados, materias individuales bloqueadas por prerrequisitos
             });
         }
 
@@ -1351,9 +1441,11 @@
             let totalCredits = 0;
             let approvedCredits = 0;
             let approvedSubjectsCount = 0;
+            let totalSubjects = 0;
             
             studyPlan.semesters.forEach(semester => {
                 semester.subjects.forEach(subject => {
+                    totalSubjects++;
                     totalCredits += subject.credits;
                     if (approvedSubjects.has(subject.code)) {
                         approvedCredits += subject.credits;
@@ -1366,7 +1458,9 @@
             
             document.getElementById('totalCredits').textContent = totalCredits;
             document.getElementById('approvedCredits').textContent = approvedCredits;
-            document.getElementById('approvedSubjects').textContent = approvedSubjectsCount;
+            const approvedSubjectsEl = document.getElementById('approvedSubjects');
+            approvedSubjectsEl.textContent = approvedSubjectsCount;
+            approvedSubjectsEl.className = `stat-value ${approvedSubjectsCount === totalSubjects ? 'stat-complete' : 'stat-incomplete'}`;
             document.getElementById('progressPercentage').textContent = `${progressPercentage}%`;
             document.getElementById('progressFill').style.width = `${progressPercentage}%`;
         }
@@ -1401,7 +1495,8 @@
                 currentSemester: currentSemester,
                 darkMode: darkMode,
                 selectedElectives: selectedElectives,
-                selectedSedes: selectedSedes
+                selectedSedes: selectedSedes,
+                grades: grades
             };
             localStorage.setItem('studyPlanState', JSON.stringify(state));
         }
@@ -1414,7 +1509,8 @@
                 currentSemester: currentSemester,
                 darkMode: darkMode,
                 selectedElectives: selectedElectives,
-                selectedSedes: selectedSedes
+                selectedSedes: selectedSedes,
+                grades: grades
             };
             const dataStr = JSON.stringify(state, null, 2);
             const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
@@ -1445,6 +1541,7 @@
                             darkMode = state.darkMode || false;
                             selectedElectives = state.selectedElectives || {};
                             selectedSedes = state.selectedSedes || {};
+                            grades = state.grades || {};
                             
                             if (darkMode) {
                                 document.body.classList.add('dark-mode');
@@ -1493,18 +1590,18 @@
         }
 
         // Abrir modal de electivas
-        function openElectiveModal(code, type) {
+        function openElectiveModal(electiveCode) {
             const modal = document.getElementById('electiveModal');
             const optionsContainer = document.getElementById('electiveOptions');
             optionsContainer.innerHTML = '';
             
-            const options = studyPlan.electivesOptions[type] || [];
+            const options = studyPlan.electivesOptions[electiveCode] || [];
             options.forEach(option => {
                 const div = document.createElement('div');
                 div.className = 'elective-option';
                 div.textContent = option;
                 div.onclick = function() {
-                    selectElective(code, option);
+                    selectElective(electiveCode, option);
                     modal.style.display = "none";
                 };
                 optionsContainer.appendChild(div);
